@@ -1251,7 +1251,25 @@ if (!document.body.classList.contains("_touch")) {
 } 
 
 
-    
+
+/*======================================================================================================================================================================*/
+// Расчет правильной высоты полноэкранных (высотой - 100vh) фиксированных элементов на мобильных устройствах:
+function fullScreenFix() {
+	const fullScreenElements = document.querySelectorAll("[data-fullscreen]");
+	if (fullScreenElements && isMobile.any()) {
+		window.addEventListener("resize", fixHeight);
+
+		function fixHeight() {
+			let height = window.innerHeight * 0.01;
+			document.documentElement.style.setProperty("--vh", `${height}px`);
+		}
+		fixHeight();
+	}
+}
+fullScreenFix();
+  
+
+
 /*======================================================================================================================================================================*/
 /* Cursor */
 if (!isMobile.any() && window.innerWidth > 992) {
